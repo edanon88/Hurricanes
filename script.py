@@ -127,13 +127,13 @@ def categorise_by_mortality(hurricane_dict_by_name):
 						"Level 4" : [],\
 						"Level 5" : []}
 	for hurricane in hurricane_dict_by_name:
-		if hurricane_dict_by_name[hurricane]["Deaths"] <=100:
+		if hurricane_dict_by_name[hurricane]["Deaths"] <= mortality_scale[1]:
 			mortality_dict["Level 1"].append(hurricane)
-		elif hurricane_dict_by_name[hurricane]["Deaths"] <= 500:
+		elif hurricane_dict_by_name[hurricane]["Deaths"] <= mortality_scale[2]:
 			mortality_dict["Level 2"].append(hurricane)
-		elif hurricane_dict_by_name[hurricane]["Deaths"] <= 1000:
+		elif hurricane_dict_by_name[hurricane]["Deaths"] <= mortality_scale[3]:
 			mortality_dict["Level 3"].append(hurricane)
-		elif hurricane_dict_by_name[hurricane]["Deaths"] <= 10000:
+		elif hurricane_dict_by_name[hurricane]["Deaths"] <= mortality_scale[4]:
 			mortality_dict["Level 4"].append(hurricane)
 		else:
 			mortality_dict["Level 5"].append(hurricane)
@@ -158,3 +158,29 @@ def find_most_damage(hurricane_dict_by_name):
 print(find_most_damage(cat_five))
 
 # write your catgeorize by damage function here:
+
+damage_scale = {0: 0, 1: 100000000, 2: 1000000000, 3: 10000000000, 4: 50000000000}
+
+def categorise_by_damage(hurricane_dict_by_name):
+	damage_dict = {"Level 1":[],\
+						"Level 2" : [],\
+						"Level 3" : [],\
+						"Level 4" : [],\
+						"Level 5" : [],\
+						"No damages recorded" : []}
+	for hurricane in hurricane_dict_by_name:
+		if type(hurricane_dict_by_name[hurricane]["Damages"]) is str:
+			damage_dict["No damages recorded"].append(hurricane)
+		elif hurricane_dict_by_name[hurricane]["Damages"] <= damage_scale[1]:
+			damage_dict["Level 1"].append(hurricane)
+		elif hurricane_dict_by_name[hurricane]["Damages"] <= damage_scale[2]:
+			damage_dict["Level 2"].append(hurricane)
+		elif hurricane_dict_by_name[hurricane]["Damages"] <= damage_scale[3]:
+			damage_dict["Level 3"].append(hurricane)
+		elif hurricane_dict_by_name[hurricane]["Damages"] <= damage_scale[4]:
+			damage_dict["Level 4"].append(hurricane)
+		else:
+			damage_dict["Level 5"].append(hurricane)
+	return damage_dict
+
+print(categorise_by_damage(cat_five))
