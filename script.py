@@ -1,3 +1,6 @@
+# To-do:
+# Rewrite this with a hurricane class, so each hurricane is an object rather than a dictionary
+
 # names of hurricanes
 names = ['Cuba I', 'San Felipe II Okeechobee', 'Bahamas', 'Cuba II', 'CubaBrownsville', 'Tampico', 'Labor Day', 'New England', 'Carol', 'Janet', 'Carla', 'Hattie', 'Beulah', 'Camille', 'Edith', 'Anita', 'David', 'Allen', 'Gilbert', 'Hugo', 'Andrew', 'Mitch', 'Isabel', 'Ivan', 'Emily', 'Katrina', 'Rita', 'Wilma', 'Dean', 'Felix', 'Matthew', 'Irma', 'Maria', 'Michael']
 
@@ -36,10 +39,12 @@ def damages_to_floats(damages_list):
 			float_list.append("fuckup")
 	return float_list
 
+damages = damages_to_floats(damages)
+
 
 # write your construct hurricane dictionary function here:
 
-def hurricane_dict_by_name(names, months, years, winds, areas, deaths):
+def hurricane_dict_by_name(names, months, years, winds, areas, damages, deaths):
 	dictionary={}
 	for i in range(len(names)):
 		dictionary[names[i]] = {\
@@ -48,11 +53,11 @@ def hurricane_dict_by_name(names, months, years, winds, areas, deaths):
 		"Year":years[i],\
 		"Max Sustained Winds":winds[i],\
 		"Areas Affected":areas[i],\
-		"Deaths":deaths[i]
-		}
+		"Damages":damages[i],\
+		"Deaths":deaths[i]}
 	return dictionary
 
-cat_five = hurricane_dict_by_name(names, months, years, max_sustained_winds, areas_affected, deaths)
+cat_five = hurricane_dict_by_name(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
 
 # write your construct hurricane by year dictionary function here:
 
