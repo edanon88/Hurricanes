@@ -121,32 +121,40 @@ print (find_most_lethal(cat_five))
 mortality_scale = {0: 0, 1: 100, 2: 500, 3: 1000, 4: 10000}
 
 def categorise_by_mortality(hurricane_dict_by_name):
-	mortality_dict = {"Level 0":[],\
-						"Level 1" : [],\
+	mortality_dict = {"Level 1":[],\
 						"Level 2" : [],\
 						"Level 3" : [],\
-						"Level 4" : []}
+						"Level 4" : [],\
+						"Level 5" : []}
 	for hurricane in hurricane_dict_by_name:
 		if hurricane_dict_by_name[hurricane]["Deaths"] <=100:
-			mortality_dict["Level 0"].append(hurricane)
-		elif hurricane_dict_by_name[hurricane]["Deaths"] <= 500:
 			mortality_dict["Level 1"].append(hurricane)
-		elif hurricane_dict_by_name[hurricane]["Deaths"] <= 1000:
+		elif hurricane_dict_by_name[hurricane]["Deaths"] <= 500:
 			mortality_dict["Level 2"].append(hurricane)
-		elif hurricane_dict_by_name[hurricane]["Deaths"] <= 10000:
+		elif hurricane_dict_by_name[hurricane]["Deaths"] <= 1000:
 			mortality_dict["Level 3"].append(hurricane)
-		else:
+		elif hurricane_dict_by_name[hurricane]["Deaths"] <= 10000:
 			mortality_dict["Level 4"].append(hurricane)
+		else:
+			mortality_dict["Level 5"].append(hurricane)
 	return mortality_dict
 
 print (categorise_by_mortality(cat_five))
 
 # write your greatest damage function here:
 
+def find_most_damage(hurricane_dict_by_name):
+	most_damaging = None
+	amount_of_damage = 0.0
+	for hurricane in hurricane_dict_by_name:
+		if type(hurricane_dict_by_name[hurricane]["Damages"]) is str:
+			pass
+		elif hurricane_dict_by_name[hurricane]["Damages"] > amount_of_damage:
+			most_damaging = hurricane
+			amount_of_damage = hurricane_dict_by_name[hurricane]["Damages"]
+	return ("Most damaging: " + most_damaging + "\n"\
+		"Amount of damage: $" + str(amount_of_damage))
 
-
-
-
-
+print(find_most_damage(cat_five))
 
 # write your catgeorize by damage function here:
